@@ -1,0 +1,14 @@
+launch:
+  - set_env:
+      name: TURTLEBOT3_MODEL
+      value: waffle
+  - include:
+      file: "$(find-pkg-share turtlebot3_gazebo)/launch/empty_world.launch.py"
+  - node:
+      pkg: turtlebot_final_project
+      exec: controller_node
+  - node:
+      pkg: turtlesim
+      exec: turtlesim_node
+  - executable:
+      cmd: "ros2 service call /kill turtlesim/srv/Kill '{name: turtle1}'"
